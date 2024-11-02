@@ -84,6 +84,3 @@ chsh -s $(which zsh)
 # Install Alacritty theme
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
-
-# Install nvim
-apt install -y nvim
