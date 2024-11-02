@@ -7,7 +7,7 @@ os=$(uname -s)
 # Install tmux
 if [ "$os" == "Linux" ]; then
   apt-get update
-  apt install software-properties-common
+  apt install -y software-properties-common
 
   add-apt-repository ppa:neovim-ppa/unstable
   
