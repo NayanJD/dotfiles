@@ -6,12 +6,15 @@ os=$(uname -s)
 
 # Install tmux
 if [ "$os" == "Linux" ]; then
+  apt-get update
+  apt install software-properties-common
+
   add-apt-repository ppa:neovim-ppa/unstable
   
-  apt-get update
   
-  apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv \
-    neovim
+  apt-get update && \
+    apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting \
+    apt-get isntall -y direnv neovim
 elif [ "$os" == "Darwin" ]; then
   brew install git tmux tmuxinator zsh zsh-syntax-highlighting direnv
 else
