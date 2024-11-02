@@ -37,7 +37,10 @@ fi
 # Placing tmux config and applying
 mkdir -p ~/.config/tmux
 cp tmux.conf ~/.config/tmux/tmux.conf
- tmux source ~/.config/tmux/tmux.conf
+
+# Commented because it does not work outside a tmux
+# session
+# tmux source ~/.config/tmux/tmux.conf
 
 # Install tmuxinator
 if [ "$os" == "Linux" ]; then
