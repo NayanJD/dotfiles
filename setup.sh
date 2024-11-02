@@ -1,6 +1,23 @@
 #!/bin/bash
 
+set -eox
+
 os=$(uname -s)
+
+apt-get update
+
+# Install tmux
+if [ "$os" == "Linux" ]; then
+  apt-get install -y git
+elif [ "$os" == "Darwin" ]; then
+  brew install git
+else
+  echo "OS: ${os} not supported"
+  exit 1
+fi
+
+git config --global user.email "dastms@gmail.com"
+git config --global user.name "Nayan Das"
 
 # Install tmux
 if [ "$os" == "Linux" ]; then
@@ -13,18 +30,20 @@ else
 fi
 
 # Install Tmux Plugin manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # Placing tmux config and applying
 mkdir -p ~/.config/tmux
 cp tmux.conf ~/.config/tmux/tmux.conf
-tmux source ~/.config/tmux/tmux.conf
+ tmux source ~/.config/tmux/tmux.conf
 
 # Install tmuxinator
 if [ "$os" == "Linux" ]; then
- apt-get install -y tmuxinator 
+ apt-get install -y tmuxinator
 elif [ "$os" == "Darwin" ]; then
- brew install tmuxinator 
+ brew install tmuxinator
 else
   echo "OS: ${os} not supported"
   exit 1
@@ -45,10 +64,16 @@ else
 fi
 
 # Install oh-my-zsh
+apt install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# Set zshrc config
+cp .zshrc ~/.zshrc
+
 # Install zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
 
 # Install Meslo Font
 if [ "$os" == "Linux" ]; then
@@ -62,9 +87,6 @@ else
   exit 1
 fi
 
-# Set zshrc config
-cp .zshrc ~/.zshrc
-
 # Install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 cp .p10k.zsh ~/.p10k.zsh
@@ -75,4 +97,5 @@ source ~/.zshrc
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
-
+# Install nvim
+apt install -y nvim
