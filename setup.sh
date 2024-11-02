@@ -6,10 +6,10 @@ os=$(uname -s)
 
 # Install tmux
 if [ "$os" == "Linux" ]; then
-  apt-get update
-  apt install -y software-properties-common
+  # apt-get update
+  # apt install -y software-properties-common
 
-  add-apt-repository ppa:neovim-ppa/unstable
+  # add-apt-repository ppa:neovim-ppa/unstable
   
   
   apt-get update && \
