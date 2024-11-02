@@ -75,6 +75,9 @@ cp .p10k.zsh ~/.p10k.zsh
 # Reload zshrc
 zsh
 
+# Change default login shell for root
+chsh -s $(which zsh)
+
 # Install Alacritty theme
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
