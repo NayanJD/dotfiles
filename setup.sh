@@ -13,8 +13,8 @@ if [ "$os" == "Linux" ]; then
   
   
   apt-get update && \
-    apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting \
-    apt-get isntall -y direnv neovim
+    apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
+    apt-get install -y direnv neovim
 elif [ "$os" == "Darwin" ]; then
   brew install git tmux tmuxinator zsh zsh-syntax-highlighting direnv
 else
