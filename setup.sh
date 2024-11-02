@@ -8,9 +8,9 @@ apt-get update
 
 # Install tmux
 if [ "$os" == "Linux" ]; then
-  apt-get install -y git
+  apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv
 elif [ "$os" == "Darwin" ]; then
-  brew install git
+  brew install git tmux tmuxinator zsh zsh-syntax-highlighting direnv
 else
   echo "OS: ${os} not supported"
   exit 1
@@ -18,16 +18,6 @@ fi
 
 git config --global user.email "dastms@gmail.com"
 git config --global user.name "Nayan Das"
-
-# Install tmux
-if [ "$os" == "Linux" ]; then
-  apt-get install -y tmux
-elif [ "$os" == "Darwin" ]; then
-  brew install tmux
-else
-  echo "OS: ${os} not supported"
-  exit 1
-fi
 
 # Install Tmux Plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
@@ -41,16 +31,6 @@ cp tmux.conf ~/.config/tmux/tmux.conf
 # Commented because it does not work outside a tmux
 # session
 # tmux source ~/.config/tmux/tmux.conf
-
-# Install tmuxinator
-if [ "$os" == "Linux" ]; then
- apt-get install -y tmuxinator
-elif [ "$os" == "Darwin" ]; then
- brew install tmuxinator
-else
-  echo "OS: ${os} not supported"
-  exit 1
-fi
 
 cp .tmuxinator.yaml ~/.tmuxinator.yaml
 
@@ -66,8 +46,7 @@ else
   exit 1
 fi
 
-# Install oh-my-zsh
-apt install -y zsh
+# Configure oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Set zshrc config
@@ -80,7 +59,6 @@ fi
 
 # Install Meslo Font
 if [ "$os" == "Linux" ]; then
-  apt-get install -y zsh-syntax-highlighting
   echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 elif [ "$os" == "Darwin" ]; then
   brew install zsh-syntax-highlighting
