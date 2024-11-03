@@ -89,9 +89,8 @@ mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
 # Copy nvim config if NvChad dir exists
-if [ ! -z `ls ./NvChad/*` ]; then
+if [ "$(ls -A NvChad 2> /dev/null)" ]; then
   cp -r NvChad ~/.config/nvim
 else
   echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
 fi
-
