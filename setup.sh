@@ -99,6 +99,8 @@ wget https://go.dev/dl/go1.22.1.linux-arm64.tar.gz -O go.tar.gz
 
 tar -C /usr/local -xzvf go.tar.gz
 
+echo $PATH
+
 go install mvdan.cc/gofumpt@latest
 go install github.com/segmentio/golines@latest
 go install -v github.com/incu6us/goimports-reviser/v3@latest
