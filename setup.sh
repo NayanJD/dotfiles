@@ -42,7 +42,7 @@ cp .tmuxinator.yaml ~/.tmuxinator.yaml
 
 # Install Meslo Font
 if [ "$os" == "Linux" ]; then
-  wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
+  wget -q -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
   unzip ~/.local/share/fonts/Meslo.zip
   fc-cache -fv
 elif [ "$os" == "Darwin" ]; then
@@ -95,9 +95,9 @@ else
   echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
 fi
 
-wget https://go.dev/dl/go1.22.1.linux-arm64.tar.gz -O go.tar.gz
+wget -q https://go.dev/dl/go1.22.1.linux-arm64.tar.gz -O go.tar.gz
 
-tar -C /usr/local -xzvf go.tar.gz
+tar -C /usr/local -xzf go.tar.gz
 
 # Zsh is not appending go bin path to $PATH. This is a temp fix.
 export PATH=$PATH:/usr/local/go/bin
@@ -126,8 +126,8 @@ sudo apt-get update
 sudo apt-get install containerd.io
 
 # Get and install nerdctl
-wget https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-arm64.tar.gz
-tar Cxzvvf /usr/local/bin nerdctl-full-1.7.5-linux-arm64.tar.gz
+wget -q https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-arm64.tar.gz
+tar Cxzf /usr/local nerdctl-full-1.7.5-linux-arm64.tar.gz
 nerdctl --version
 
 # To run cross platform images
@@ -137,7 +137,7 @@ sudo nerdctl run --privileged --rm tonistiigi/binfmt:master --install all
 sudo systemctl enable --now buildkit
 
 # Download kubectl
-wget "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -O /usr/local/bin/kubectl
+wget -q "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -O /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
 
 # Install kubectx and kubens
