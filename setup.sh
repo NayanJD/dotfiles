@@ -99,6 +99,7 @@ wget https://go.dev/dl/go1.22.1.linux-arm64.tar.gz -O go.tar.gz
 
 tar -C /usr/local -xzvf go.tar.gz
 
+# Zsh is not appending go bin path to $PATH. This is a temp fix.
 export PATH=$PATH:/usr/local/go/bin
 
 echo $PATH
@@ -125,7 +126,7 @@ sudo apt-get update
 sudo apt-get install containerd.io
 
 # Get and install nerdctl
-wget https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-1.7.5-linux-arm64.tar.gz
+wget https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-arm64.tar.gz
 tar Cxzvvf /usr/local/bin nerdctl-full-1.7.5-linux-arm64.tar.gz
 nerdctl --version
 
