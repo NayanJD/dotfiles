@@ -56,7 +56,7 @@ fi
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Set zshrc config
-cp .zshrc ~/.zshrc
+cp /vagrant/.zshrc /root/.zshrc
 
 # Install zsh plugins
 if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
@@ -94,3 +94,46 @@ if [ "$(ls -A NvChad 2> /dev/null)" ]; then
 else
   echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
 fi
+
+wget https://go.dev/dl/go1.22.1.linux-arm64.tar.gz -O go.tar.gz
+
+tar -C /usr/local -xzvf go.tar.gz
+
+go install mvdan.cc/gofumpt@latest
+go install github.com/segmentio/golines@latest
+go install -v github.com/incu6us/goimports-reviser/v3@latest
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl python3 
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update and install containerd
+sudo apt-get update
+sudo apt-get install containerd.io
+
+# Get and install nerdctl
+wget https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-1.7.5-linux-arm64.tar.gz
+tar Cxzvvf /usr/local/bin nerdctl-full-1.7.5-linux-arm64.tar.gz
+nerdctl --version
+
+# To run cross platform images
+sudo nerdctl run --privileged --rm tonistiigi/binfmt:master --install all
+
+# To allow image building
+sudo systemctl enable --now buildkit
+
+# Download kubectl
+wget "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -O /usr/local/bin/kubectl
+chmod +x /usr/local/bin/kubectl
+
+# Install kubectx and kubens
+snap install kubectx --classic
