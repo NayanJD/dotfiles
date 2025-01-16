@@ -19,7 +19,7 @@ function setup_debian() {
     
     ## Install Tmux Plugin manager
     if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+      git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     fi
     
     # Placing tmux config and applying
@@ -51,7 +51,7 @@ function setup_debian() {
     fi
     
     # Install zsh-syntax-highlighting
-      echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+    echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
     
     # Install powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -67,12 +67,14 @@ function setup_debian() {
     git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
     # Copy nvim config if NvChad dir exists
-    if [ "$(ls -A NvChad 2> /dev/null)" ]; then
-      cp -r NvChad ~/.config/nvim
-    else
-      echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
-    fi
+    # if [ "$(ls -A NvChad 2> /dev/null)" ]; then
+    #   cp -r NvChad ~/.config/nvim
+    # else
+    #   echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
+    # fi
     
+    git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+
     wget -q "https://go.dev/dl/go1.22.1.linux-${arch}.tar.gz" -O go.tar.gz
     tar -C /usr/local -xzf go.tar.gz
     
