@@ -5,7 +5,7 @@ function setup_debian() {
 
     # Install tmux
     apt-get update
-    apt install -y software-properties-common
+    apt install -y software-properties-common fontconfig
   
     add-apt-repository ppa:neovim-ppa/unstable
     
@@ -34,9 +34,10 @@ function setup_debian() {
     
     # Install Meslo Font
     wget -q -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
-    unzip ~/.local/share/fonts/Meslo.zip
-    fc-cache -fv
-    
+    temp_dir=$(mktemp -d)
+    unzip ~/.local/share/fonts/Meslo.zip -x "$temp_dir"
+    fc-cache -fv "$temp_dir"
+    rm -rf "$temp_dir"
     
     # Configure oh-my-zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -58,9 +59,6 @@ function setup_debian() {
     
     # Reload zshrc
     zsh
-    
-    # Change default login shell for root
-    chsh -s $(which zsh)
     
     # Install Alacritty theme
     mkdir -p ~/.config/alacritty/themes
@@ -120,5 +118,7 @@ function setup_debian() {
     
     # Install kubectx and kubens
     snap install kubectx --classic
-  fi
+
+    # Change default login shell for root
+    chsh -s $(which zsh)
 }
