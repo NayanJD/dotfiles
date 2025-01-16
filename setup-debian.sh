@@ -42,7 +42,7 @@ function setup_debian() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     
     # Set zshrc config
-    cp /vagrant/.zshrc /root/.zshrc
+    cp .zshrc /root/.zshrc
     
     # Install zsh plugins
     if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
