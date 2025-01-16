@@ -57,8 +57,10 @@ function setup_debian() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
     cp .p10k.zsh ~/.p10k.zsh
     
+    # Commenting this becasue this stops the script and requires
+    # running exit manually while the scripts run
     # Reload zshrc
-    zsh
+    # zsh
     
     # Install Alacritty theme
     mkdir -p ~/.config/alacritty/themes
@@ -86,7 +88,7 @@ function setup_debian() {
 
     # Add Docker's official GPG key:
     sudo apt-get update
-    sudo apt-get install ca-certificates curl python3 
+    sudo apt-get install ca-certificates curl python3 -y
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -99,7 +101,7 @@ function setup_debian() {
     
     # Update and install containerd
     sudo apt-get update
-    sudo apt-get install containerd.io
+    sudo apt-get install containerd.io -y
     
     # Get and install nerdctl
     wget -q "https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-${arch}.tar.gz"

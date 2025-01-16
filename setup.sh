@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source setup-debian.sh
-source setup-darwin.sh
+source ./setup-debian.sh
+#source ./setup darwin.sh
 
 set -eox
 
