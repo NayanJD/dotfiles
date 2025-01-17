@@ -5,17 +5,19 @@ So, these dotfiles are primarily focused on those.
 
 ### Tools Installed
 
-1. git
-2. tmux
-3. tmuxinator
-4. zsh
-5. direnv
-6. neovim
-7. powerlevel10k
-8. nvim with NvChad config.
-9. golang and language tools
-10. containerd and nerdctl
-11. kubectl and kubectx
+1. [git](https://git-scm.com/)
+2. [tmux](https://github.com/tmux/tmux/wiki)
+    - Run `cmd + shift + i` to install TPM plugins.
+4. [tmuxinator](https://github.com/tmuxinator/tmuxinator)
+5. zsh
+    - `zsh` need to run after setup completes to load the zsh configurations.
+6. [direnv](https://direnv.net/)
+7. [neovim](https://github.com/neovim/neovim)
+   - `:MasonInstallAll` needs to be run manually to install the LSP servers.
+9. [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+10. Golang and language tools
+11. containerd and nerdctl
+12. kubectl and kubectx
 
 ## VMs tested
 
@@ -26,13 +28,10 @@ Steps to run:
 1. Create the droplet
 2. Clone this repo.
 3. Run `./setup.sh`
-4. Run `zsh` to load the zsh configurations.
-5. In a first `tmux` session, run `cmd + shift + i` to install TPM plugins.
 
 ## ToDo
 
 - [ ] Add Darwin setup for MacOs
-- [ ] Update NvChad
 - [ ] Fix and add setup for vagrant
 
 ## Refs
