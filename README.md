@@ -27,9 +27,14 @@ Steps to run:
 2. Clone this repo.
 3. Run `./setup.sh`
 4. Run `zsh` to load the zsh configurations.
+5. In a first `tmux` session, run `cmd + shift + i` to install TPM plugins.
 
 ## ToDo
 
 - [ ] Add Darwin setup for MacOs
 - [ ] Update NvChad
 - [ ] Fix and add setup for vagrant
+
+## Refs
+
+1. https://youtu.be/DzNmUNvnB04?si=M2pBqXR8VYreIZ-s
