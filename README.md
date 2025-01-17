@@ -34,3 +34,7 @@ Steps to run:
 - [ ] Add Darwin setup for MacOs
 - [ ] Update NvChad
 - [ ] Fix and add setup for vagrant
+
+## Refs
+
+1. https://youtu.be/DzNmUNvnB04?si=M2pBqXR8VYreIZ-s
