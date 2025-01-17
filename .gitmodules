@@ -1,4 +1,0 @@
-[submodule "NvChad"]
-	path = NvChad
-	url = git@github.com:NayanJD/NvChad.git
-	branch = v2.0-nayanjd
