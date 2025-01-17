@@ -11,7 +11,7 @@ function setup_debian() {
     
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
-      apt-get install -y direnv neovim ripgrep
+      apt-get install -y direnv neovim ripgrep nodejs npm unzip
     
     
     git config --global user.email "dastms@gmail.com"
