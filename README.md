@@ -27,6 +27,7 @@ Steps to run:
 2. Clone this repo.
 3. Run `./setup.sh`
 4. Run `zsh` to load the zsh configurations.
+5. In a first `tmux` session, run `cmd + shift + i` to install TPM plugins.
 
 ## ToDo
 
