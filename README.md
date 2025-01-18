@@ -7,13 +7,15 @@ So, these dotfiles are primarily focused on those.
 
 1. [git](https://git-scm.com/)
 2. [tmux](https://github.com/tmux/tmux/wiki)
-    - Run `cmd + shift + i` to install TPM plugins.
+    - Prefix: `<C-Space>`
+    - Run `prefix + I` to install TPM plugins.
 4. [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 5. zsh
     - `zsh` need to run after setup completes to load the zsh configurations.
 6. [direnv](https://direnv.net/)
 7. [neovim](https://github.com/neovim/neovim)
    - `:MasonInstallAll` needs to be run manually to install the LSP servers.
+   - Prefix: `/`
 9. [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 10. Golang and language tools
 11. containerd and nerdctl
