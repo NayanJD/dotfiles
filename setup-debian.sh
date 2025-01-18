@@ -73,7 +73,7 @@ function setup_debian() {
     #   echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
     # fi
     
-    git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+    git clone https://github.com/NvChad/starter ~/.config/nvim
 
     wget -q "https://go.dev/dl/go1.22.1.linux-${arch}.tar.gz" -O go.tar.gz
     tar -C /usr/local -xzf go.tar.gz
