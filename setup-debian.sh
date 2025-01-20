@@ -1,5 +1,13 @@
 #!/bin/bash
 
+function is_env_set() {
+  if [ -z "$1" ] || [ "$1" = "0" ] || [ "$1" = "false" ] || [ "$1" = "off" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 function setup_debian() {
     arch=$(dpkg --print-architecture)
 
@@ -97,27 +105,35 @@ function setup_debian() {
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    is_env_set "$SKIP_CONTAINERD_INSTALL"
+
+    if [ $? -eq 0 ]; then
+        # Add the repository to Apt sources:
+        echo \
+          "deb [arch=$arch signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+          $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+          sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        
+        # Update and install containerd
+        sudo apt-get update
+        sudo apt-get install containerd.io -y
+    fi
+
+    is_env_set "$SKIP_NERDCTL_INSTALL"
+
+    if [ $? -eq 0 ]; then
+        # Get and install nerdctl
+        wget -q "https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-${arch}.tar.gz"
+        tar Cxzf /usr/local "nerdctl-full-1.7.5-linux-${arch}.tar.gz"
+        nerdctl --version
+        
+        # To run cross platform images
+        sudo nerdctl run --privileged --rm tonistiigi/binfmt:master --install all
     
-    # Add the repository to Apt sources:
-    echo \
-      "deb [arch=$arch signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    
-    # Update and install containerd
-    sudo apt-get update
-    sudo apt-get install containerd.io -y
-    
-    # Get and install nerdctl
-    wget -q "https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-${arch}.tar.gz"
-    tar Cxzf /usr/local "nerdctl-full-1.7.5-linux-${arch}.tar.gz"
-    nerdctl --version
-    
-    # To run cross platform images
-    sudo nerdctl run --privileged --rm tonistiigi/binfmt:master --install all
-    
-    # To allow image building
-    sudo systemctl enable --now buildkit
+        # To allow image building
+        sudo systemctl enable --now buildkit
+    fi
     
     # Download kubectl
     wget -q "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -O /usr/local/bin/kubectl
