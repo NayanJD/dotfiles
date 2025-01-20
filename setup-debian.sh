@@ -6,12 +6,10 @@ function setup_debian() {
     # Install tmux
     apt-get update
     apt install -y software-properties-common fontconfig
-  
-    add-apt-repository ppa:neovim-ppa/unstable
     
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
-      apt-get install -y direnv neovim ripgrep nodejs npm unzip
+      apt-get install -y direnv ripgrep nodejs npm unzip
     
     
     git config --global user.email "dastms@gmail.com"
@@ -65,6 +63,11 @@ function setup_debian() {
     # Install Alacritty theme
     mkdir -p ~/.config/alacritty/themes
     git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+
+    # I am not using apt because the repository ppa:neovim-ppa/unstable adds *-dev builds
+    # which crashes. Currently, I am
+    wget -q "https://github.com/NayanJD/dotfiles/releases/download/v1/nvim-v0.10.3-linux-${arch}.tar.gz"
+    tar Cxzf /usr/local/bin "nvim-v0.10.3-linux-${arch}.tar.gz"
 
     # Copy nvim config if NvChad dir exists
     if [ "$(ls -A NvChad 2> /dev/null)" ]; then
