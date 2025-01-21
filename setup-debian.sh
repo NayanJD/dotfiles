@@ -17,8 +17,9 @@ function setup_debian() {
     
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
-      apt-get install -y direnv ripgrep nodejs npm unzip
-    
+      apt-get install -y direnv ripgrep nodejs npm unzip && \
+      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext # Required to build nvim
+      
     
     git config --global user.email "dastms@gmail.com"
     git config --global user.name "Nayan Das"
@@ -72,11 +73,17 @@ function setup_debian() {
     mkdir -p ~/.config/alacritty/themes
     git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
-    # I am not using apt because the repository ppa:neovim-ppa/unstable adds *-dev builds
-    # which crashes. Currently, I am
-    wget -q "https://github.com/NayanJD/dotfiles/releases/download/v1/nvim-v0.10.3-linux-${arch}.tar.gz"
-    tar Cxzf /usr/local/bin "nvim-v0.10.3-linux-${arch}.tar.gz"
-
+    # Build neovim. We are building because nightly build end up in 
+    # ppa:neovim-ppa/unstable and it crashes with SEG fault in arm64. Old way:
+    # add-apt-repository ppa:neovim-ppa/unstable
+    # apt-get update && apt-get install -y neovim.
+    git clone git@github.com:neovim/neovim.git
+    pushd ./neovim
+    git checkout v0.10.3
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+    popd
+    
     # Copy nvim config if NvChad dir exists
     if [ "$(ls -A NvChad 2> /dev/null)" ]; then
       cp -r NvChad ~/.config/nvim
