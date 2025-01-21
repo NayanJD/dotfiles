@@ -72,17 +72,6 @@ function setup_debian() {
     # Install Alacritty theme
     mkdir -p ~/.config/alacritty/themes
     git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
-
-    # Build neovim. We are building because nightly build end up in 
-    # ppa:neovim-ppa/unstable and it crashes with SEG fault in arm64. Old way:
-    # add-apt-repository ppa:neovim-ppa/unstable
-    # apt-get update && apt-get install -y neovim.
-    git clone git@github.com:neovim/neovim.git
-    pushd ./neovim
-    git checkout v0.10.3
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
-    popd
     
     # Copy nvim config if NvChad dir exists
     if [ "$(ls -A NvChad 2> /dev/null)" ]; then
@@ -113,9 +102,20 @@ function setup_debian() {
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-    is_env_set "$SKIP_CONTAINERD_INSTALL"
 
-    if [ $? -eq 0 ]; then
+    # Build neovim. We are building because nightly build end up in 
+    # ppa:neovim-ppa/unstable and it crashes with SEG fault in arm64. Old way:
+    # add-apt-repository ppa:neovim-ppa/unstable
+    # apt-get update && apt-get install -y neovim.
+    git clone git@github.com:neovim/neovim.git
+    pushd ./neovim
+    git checkout v0.10.3
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+    popd
+    
+    # Need to find a elegant way to do this
+    if [ -z "$SKIP_CONTAINERD_INSTALL" ] || [ "$SKIP_CONTAINERD_INSTALL" = "false" ] || [ "$SKIP_CONTAINERD_INSTALL" = "0" ]; then
         # Add the repository to Apt sources:
         echo \
           "deb [arch=$arch signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
@@ -127,9 +127,7 @@ function setup_debian() {
         sudo apt-get install containerd.io -y
     fi
 
-    is_env_set "$SKIP_NERDCTL_INSTALL"
-
-    if [ $? -eq 0 ]; then
+    if [ -z "$SKIP_NERDCTL_INSTALL" ] || [ "$SKIP_NERDCTL_INSTALL" = "false" ] || [ "$SKIP_NERDCTL_INSTALL" = "0" ]; then
         # Get and install nerdctl
         wget -q "https://github.com/containerd/nerdctl/releases/download/v1.7.5/nerdctl-full-1.7.5-linux-${arch}.tar.gz"
         tar Cxzf /usr/local "nerdctl-full-1.7.5-linux-${arch}.tar.gz"
