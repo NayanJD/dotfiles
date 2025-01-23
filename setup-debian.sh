@@ -17,7 +17,7 @@ function setup_debian() {
     
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
-      apt-get install -y direnv ripgrep nodejs npm unzip && \
+      apt-get install -y direnv ripgrep nodejs npm unzip jq && \
       apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext # Required to build nvim
       
     
@@ -88,7 +88,9 @@ function setup_debian() {
 
     # Install go debugger. It's required for nvim-dap as well.
     go install github.com/go-delve/delve/cmd/dlv@latest
-
+    # grpcurl for grpc calls.
+    go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+    
     # TODO: These are no longer needed, probably. These need to be cleaned up. 
     go install mvdan.cc/gofumpt@latest
     go install github.com/segmentio/golines@latest
