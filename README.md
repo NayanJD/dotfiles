@@ -27,9 +27,10 @@ So, these dotfiles are primarily focused on those.
 
 Steps to run:
 
-1. Create the droplet
-2. Clone this repo.
-3. Run `./setup.sh`
+1. SSH into the droplet with `root` user. 
+2. Create the droplet.
+3. Clone this repo.
+4. Run `./setup.sh`.
 
 ## ToDo
 
