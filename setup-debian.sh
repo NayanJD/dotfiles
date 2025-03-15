@@ -22,6 +22,8 @@ function setup_debian() {
       apt-get install -y neofetch kitty
       
     
+    export HOME=/root
+
     # Copy the zenitsu neofetch image
     mkdir -p $HOME/.config/neofetch && 
       cp ./assets/zenitsu1.png $HOME/.config/neofetch/zenitsu1.png
@@ -90,7 +92,7 @@ function setup_debian() {
     
     # Zsh is not appending go bin path to $PATH. This is a temp fix.
     export PATH=$PATH:/usr/local/go/bin
-    export GOPATH=$HOME/go
+    # export GOPATH=$HOME/go
 
     # Install go debugger. It's required for nvim-dap as well.
     go install github.com/go-delve/delve/cmd/dlv@latest
