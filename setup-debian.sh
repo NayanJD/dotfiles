@@ -47,7 +47,7 @@ function setup_debian() {
     # Install Meslo Font
     wget -q -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
     temp_dir=$(mktemp -d)
-    unzip ~/.local/share/fonts/Meslo.zip -x "$temp_dir"
+    unzip ~/.local/share/fonts/Meslo.zip -d "$temp_dir"
     fc-cache -fv "$temp_dir"
     rm -rf "$temp_dir"
     
