@@ -90,6 +90,7 @@ function setup_debian() {
     
     # Zsh is not appending go bin path to $PATH. This is a temp fix.
     export PATH=$PATH:/usr/local/go/bin
+    export GOPATH=$HOME/go
 
     # Install go debugger. It's required for nvim-dap as well.
     go install github.com/go-delve/delve/cmd/dlv@latest
