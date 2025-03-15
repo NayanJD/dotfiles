@@ -18,7 +18,7 @@ function setup_debian() {
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
       apt-get install -y direnv ripgrep nodejs npm unzip jq && \
-      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \
+      # apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \
       apt-get install -y neofetch kitty
       
     
