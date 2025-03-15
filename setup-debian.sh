@@ -19,7 +19,8 @@ function setup_debian() {
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
       apt-get install -y direnv ripgrep nodejs npm unzip jq && \
       # apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \
-      apt-get install -y neofetch kitty
+      apt-get install -y neofetch kitty && \ 
+      apt-get install -y python3.10-venv
       
     
     export HOME=/root
@@ -123,7 +124,11 @@ function setup_debian() {
     # make CMAKE_BUILD_TYPE=RelWithDebInfo
     # sudo make install
     # popd
-    #
+  
+    # Install nvim
+    wget https://github.com/NayanJD/dotfiles/releases/download/v1/nvim-ubuntu-22.04-v0.10.3-arm64.deb
+    dpkg -i nvim-ubuntu-22.04-v0.10.3-arm64.deb 
+
     # Need to find a elegant way to do this
     if [ -z "$SKIP_CONTAINERD_INSTALL" ] || [ "$SKIP_CONTAINERD_INSTALL" = "false" ] || [ "$SKIP_CONTAINERD_INSTALL" = "0" ]; then
         # Add the repository to Apt sources:
