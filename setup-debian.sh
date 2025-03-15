@@ -117,13 +117,13 @@ function setup_debian() {
     # ppa:neovim-ppa/unstable and it crashes with SEG fault in arm64. Old way:
     # add-apt-repository ppa:neovim-ppa/unstable
     # apt-get update && apt-get install -y neovim.
-    git clone https://github.com/neovim/neovim.git
-    pushd ./neovim
-    git checkout v0.10.3
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
-    popd
-    
+    # git clone https://github.com/neovim/neovim.git
+    # pushd ./neovim
+    # git checkout v0.10.3
+    # make CMAKE_BUILD_TYPE=RelWithDebInfo
+    # sudo make install
+    # popd
+    #
     # Need to find a elegant way to do this
     if [ -z "$SKIP_CONTAINERD_INSTALL" ] || [ "$SKIP_CONTAINERD_INSTALL" = "false" ] || [ "$SKIP_CONTAINERD_INSTALL" = "0" ]; then
         # Add the repository to Apt sources:
