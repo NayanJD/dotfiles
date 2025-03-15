@@ -18,7 +18,7 @@ function setup_debian() {
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
       apt-get install -y direnv ripgrep nodejs npm unzip jq && \
-      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \ # Required to build nvim
+      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \
       apt-get install -y neofetch kitty
       
     
@@ -114,7 +114,7 @@ function setup_debian() {
     # ppa:neovim-ppa/unstable and it crashes with SEG fault in arm64. Old way:
     # add-apt-repository ppa:neovim-ppa/unstable
     # apt-get update && apt-get install -y neovim.
-    git clone git@github.com:neovim/neovim.git
+    git clone https://github.com/neovim/neovim.git
     pushd ./neovim
     git checkout v0.10.3
     make CMAKE_BUILD_TYPE=RelWithDebInfo
