@@ -18,9 +18,14 @@ function setup_debian() {
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
       apt-get install -y direnv ripgrep nodejs npm unzip jq && \
-      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext # Required to build nvim
+      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \ # Required to build nvim
+      apt-get install -y neofetch kitty
       
     
+    # Copy the zenitsu neofetch image
+    mkdir -p $HOME/.config/neofetch && 
+      cp ./assets/zenitsu1.png $HOME/.config/neofetch/zenitsu1.png
+
     git config --global user.email "dastms@gmail.com"
     git config --global user.name "Nayan Das"
     
