@@ -26,8 +26,8 @@ function setup_debian() {
     mkdir -p $HOME/.config/neofetch && 
       cp ./assets/zenitsu1.png $HOME/.config/neofetch/zenitsu1.png
 
-    git config --global user.email "dastms@gmail.com"
-    git config --global user.name "Nayan Das"
+    git config --system user.email "dastms@gmail.com"
+    git config --system user.name "Nayan Das"
     
     ## Install Tmux Plugin manager
     if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
