@@ -20,7 +20,6 @@ function setup_debian() {
       apt-get install -y direnv ripgrep nodejs npm unzip jq && \
       apt-get install -y neofetch kitty && \ 
       apt-get install -y python3.10-venv
-      # apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext && \
       
     
     export HOME=/root
