@@ -225,3 +225,9 @@ alias kdelno='kubectl delete node'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh./[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Show cool neofetch if the terminal is xterm-kitty which is usually
+# when I log in to a server. Later, I almost work on tmux which has 
+# $TERM as screen-256color
+[ "$TERM" = "xterm-kitty" ] && neofetch --kitty /Users/nayandas/Downloads/zenitsu1.png --size 600px
+

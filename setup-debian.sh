@@ -18,11 +18,18 @@ function setup_debian() {
     apt-get update && \
       apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting && \
       apt-get install -y direnv ripgrep nodejs npm unzip jq && \
-      apt-get install -y libtool autoconf automake cmake libncurses5-dev g++ gettext # Required to build nvim
+      apt-get install -y neofetch kitty && \
+      apt-get install -y python3.10-venv
       
     
-    git config --global user.email "dastms@gmail.com"
-    git config --global user.name "Nayan Das"
+    export HOME=/root
+
+    # Copy the zenitsu neofetch image
+    mkdir -p $HOME/.config/neofetch && 
+      cp ./assets/zenitsu1.png $HOME/.config/neofetch/zenitsu1.png
+
+    git config --system user.email "dastms@gmail.com"
+    git config --system user.name "Nayan Das"
     
     ## Install Tmux Plugin manager
     if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
@@ -42,7 +49,7 @@ function setup_debian() {
     # Install Meslo Font
     wget -q -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
     temp_dir=$(mktemp -d)
-    unzip ~/.local/share/fonts/Meslo.zip -x "$temp_dir"
+    unzip ~/.local/share/fonts/Meslo.zip -d "$temp_dir"
     fc-cache -fv "$temp_dir"
     rm -rf "$temp_dir"
     
@@ -85,6 +92,7 @@ function setup_debian() {
     
     # Zsh is not appending go bin path to $PATH. This is a temp fix.
     export PATH=$PATH:/usr/local/go/bin
+    # export GOPATH=$HOME/go
 
     # Install go debugger. It's required for nvim-dap as well.
     go install github.com/go-delve/delve/cmd/dlv@latest
@@ -109,13 +117,17 @@ function setup_debian() {
     # ppa:neovim-ppa/unstable and it crashes with SEG fault in arm64. Old way:
     # add-apt-repository ppa:neovim-ppa/unstable
     # apt-get update && apt-get install -y neovim.
-    git clone git@github.com:neovim/neovim.git
-    pushd ./neovim
-    git checkout v0.10.3
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
-    popd
-    
+    # git clone https://github.com/neovim/neovim.git
+    # pushd ./neovim
+    # git checkout v0.10.3
+    # make CMAKE_BUILD_TYPE=RelWithDebInfo
+    # sudo make install
+    # popd
+  
+    # Install nvim
+    wget https://github.com/NayanJD/dotfiles/releases/download/v1/nvim-ubuntu-22.04-v0.10.3-arm64.deb
+    dpkg -i nvim-ubuntu-22.04-v0.10.3-arm64.deb 
+
     # Need to find a elegant way to do this
     if [ -z "$SKIP_CONTAINERD_INSTALL" ] || [ "$SKIP_CONTAINERD_INSTALL" = "false" ] || [ "$SKIP_CONTAINERD_INSTALL" = "0" ]; then
         # Add the repository to Apt sources:
