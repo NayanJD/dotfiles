@@ -114,6 +114,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# Replace ls with eza
+alias ls="eza --icons"
+
 # Setup hoook for direnv
 eval "$(direnv hook zsh)"
 
