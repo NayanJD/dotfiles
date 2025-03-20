@@ -131,8 +131,8 @@ function setup_debian() {
   # popd
 
   # Install nvim
-  wget https://github.com/NayanJD/dotfiles/releases/download/v1/nvim-ubuntu-22.04-v0.10.3-arm64.deb
-  dpkg -i nvim-ubuntu-22.04-v0.10.3-arm64.deb
+  wget "https://github.com/NayanJD/dotfiles/releases/download/v1/nvim-ubuntu-22.04-v0.10.3-${arch}.deb"
+  dpkg -i "nvim-ubuntu-22.04-v0.10.3-${arch}.deb"
 
   # Need to find a elegant way to do this
   if [ -z "$SKIP_CONTAINERD_INSTALL" ] || [ "$SKIP_CONTAINERD_INSTALL" = "false" ] || [ "$SKIP_CONTAINERD_INSTALL" = "0" ]; then
