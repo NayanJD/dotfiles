@@ -80,7 +80,7 @@ Run below after cloning neovim:
 
 1. Install basics:
 ```shell
-apt-get install -y libtool autoconf automake cmake libcurses5-dev g++ gettext
+apt-get install -y cmake  gettext
 ```
 2. Build Neovim:
 ```shell
