@@ -25,8 +25,8 @@ So, these dotfiles are primarily focused on those.
 
 | VM | Is Supported | Automated Provisioning | Note |
 | -------- | -------- | -------- | --------- |
-| DigitalOcean Droplet   |  ❌  | ❌  | Need to be tested |
-| Lima VM   |  ✅   | ✅  | [1] |
+| DigitalOcean Droplet (Ubuntu 22.04 LTS)   | ✅   | ✅  |  |
+| Lima VM (Ubuntu 22.04 LTS)   |  ✅   | ✅  | [1] |
 
 1. If the boot time takes too much time (probably due to system constraints),
 provisioning might fail.
@@ -35,12 +35,17 @@ provisioning might fail.
 
 ### DigitalOcean Droplet with Ubuntu 22.04 LTS
 
-Steps to run:
+Steps to run to provision:
 
-1. SSH into the droplet with `root` user. 
-2. Create the droplet.
-3. Clone this repo.
-4. Run `./setup.sh`.
+1. Run `export DIGITALOCEAN_API_TOKEN=<Your API key>`
+2. Find your accouts ssh keys using `doctl compute ssh-key list` and export them as 
+    `export TF_VAR_ssh_key_ids='["41184238", "41183809"]`
+2. Run `make droplet-create` to provision the droplet.
+3. Login to the vm using ssh and run `tail -f /var/log/cloud-init-output.log` to check the progress
+
+Steps to cleanup:
+
+1. Run `make droplet-cleanup`.
 
 ### [Lima VM](https://lima-vm.io/) with Ubuntu 22.04 LTS
 
