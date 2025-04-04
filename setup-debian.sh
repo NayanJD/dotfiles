@@ -61,7 +61,8 @@ function setup_debian() {
   # Configure oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  ln -fs .zshrc /root/.zshrc
+  ln -fs /root/dotfiles/.zshrc /root/.zshrc
+
   # Install zsh plugins
   if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -85,7 +86,7 @@ function setup_debian() {
 
   # Copy nvim config if NvChad dir exists
   if [ "$(ls -A NvChad 2>/dev/null)" ]; then
-    ln -fs NvChad ~/.config/nvim
+    ln -fs /root/dotfiles/NvChad ~/.config/nvim
   else
     echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
   fi
