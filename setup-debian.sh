@@ -165,7 +165,7 @@ function setup_debian() {
   snap install kubectx --classic
   
   # Install 1password cli
-  wget "https://downloads.1password.com/linux/debian/amd64/stable/1password-cli-${arch}-latest.deb"
+  wget "https://downloads.1password.com/linux/debian/${arch}/stable/1password-cli-${arch}-latest.deb"
   dpkg -i "1password-cli-${arch}-latest.deb"
 
   # Change default login shell for root
