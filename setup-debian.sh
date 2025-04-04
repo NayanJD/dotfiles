@@ -13,13 +13,11 @@ function setup_debian() {
 
   # Install tmux
   apt-get update
-  apt install -y software-properties-common fontconfig
+  apt install -y software-properties-common fontconfig python3-pip
 
   apt-get update &&
-    apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting &&
-    apt-get install -y direnv ripgrep nodejs npm unzip jq &&
-    apt-get install -y neofetch kitty &&
-    apt-get install -y python3.10-venv
+    apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv ripgrep nodejs npm unzip jq neofetch kitty &&
+    apt-get install -y python3.10-venv btop
 
   # Install eza
   sudo mkdir -p /etc/apt/keyrings
@@ -63,9 +61,7 @@ function setup_debian() {
   # Configure oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  # Set zshrc config
-  cp .zshrc /root/.zshrc
-
+  ln -s .zshrc /root/.zshrc
   # Install zsh plugins
   if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -89,7 +85,7 @@ function setup_debian() {
 
   # Copy nvim config if NvChad dir exists
   if [ "$(ls -A NvChad 2>/dev/null)" ]; then
-    cp -r NvChad ~/.config/nvim
+    ln -s NvChad ~/.config/nvim
   else
     echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
   fi
@@ -166,6 +162,10 @@ function setup_debian() {
 
   # Install kubectx and kubens
   snap install kubectx --classic
+  
+  # Install 1password cli
+  wget "https://downloads.1password.com/linux/debian/amd64/stable/1password-cli-${arch}-latest.deb"
+  dpkg -i "1password-cli-${arch}-latest.deb"
 
   # Change default login shell for root
   chsh -s $(which zsh)

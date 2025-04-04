@@ -35,12 +35,12 @@ provision:
     script: |
       #!/bin/bash
 
-      git clone --recursive https://github.com/NayanJD/dotfiles.git
+      git clone --recursive https://github.com/NayanJD/dotfiles.git /root/dotfiles
       
       export SKIP_NERDCTL_INSTALL=true
       export SKIP_CONTAINERD_INSTALL=true
 
-      cd dotfiles && ./setup.sh
+      cd /root/dotfiles && ./setup.sh
 
 # cpus: 8
 # memory: 10GiB
