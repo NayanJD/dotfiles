@@ -21,6 +21,15 @@ So, these dotfiles are primarily focused on those.
 11. containerd and nerdctl
 12. kubectl and kubectx
 
+**Note**:
+1. If you are importing your previously saved .zsh_history, you can do so with:
+
+```bash
+ln -fs /root/zsh_history/.zsh_history /root/.zsh_history # Force create symlink
+fc -R # Reload the history file
+# history 0 # Only needed to verify
+```
+
 ## Compatibility matrix
 
 | VM | Is Supported | Automated Provisioning | Note |
