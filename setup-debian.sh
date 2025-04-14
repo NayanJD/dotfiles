@@ -28,6 +28,10 @@ function setup_debian() {
   # Install powerlevel10k
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
   
+  ln -fs /root/dotfiles/.zshrc /root/.zshrc
+  
+  cp .p10k.zsh ~/.p10k.zsh
+
   chsh -s $(which zsh)
 
   # arch=$(dpkg --print-architecture)
