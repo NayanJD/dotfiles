@@ -18,10 +18,6 @@ runcmd:
   - mkdir -p /root/dotfiles
   # Clone the repository
   - git clone --recursive https://github.com/NayanJD/dotfiles.git /root/dotfiles
-  # Make setup script executable
-  # - chmod +x /root/dotfiles/setup.sh
-  # Run setup script
-  # - /root/dotfiles/setup.sh
   - cd /root/dotfiles
   - ./setup.sh
 
