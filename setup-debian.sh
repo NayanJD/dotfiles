@@ -9,6 +9,9 @@ function is_env_set() {
 }
 
 function setup_debian() {
+
+  export HOME=/root
+
   apt update
   apt install -y zsh zsh-syntax-highlighting
 
