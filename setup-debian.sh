@@ -9,30 +9,7 @@ function is_env_set() {
 }
 
 function setup_debian() {
-
   export HOME=/root
-
-#   apt update
-#   apt install -y zsh zsh-syntax-highlighting
-#
-#   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#
-# # Install zsh plugins
-#   if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-#     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-#   fi
-#
-#   # Install zsh-syntax-highlighting
-#   echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
-#
-#   # Install powerlevel10k
-#   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-#
-#   ln -fs /root/dotfiles/.zshrc /root/.zshrc
-#
-#   cp .p10k.zsh ~/.p10k.zsh
-#
-#   chsh -s $(which zsh)
 
   arch=$(dpkg --print-architecture)
 
@@ -42,7 +19,7 @@ function setup_debian() {
 
   apt-get update &&
     apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv ripgrep nodejs npm unzip jq neofetch kitty &&
-    apt-get install -y python3.10-venv btop wget
+    apt-get install -y python3.10-venv btop wget bat
 
   # Install eza
   sudo mkdir -p /etc/apt/keyrings

@@ -1,0 +1,33 @@
+#cloud-config
+
+# Update and install required packages
+package_update: true
+package_upgrade: true
+
+# orbstack's ubuntu jammy does not have these basic packages
+packages:
+  - git
+  # Need to run containers using nerdctl
+  - iptables
+  - wget
+  - curl
+
+# Run commands to clone repo and execute setup script
+runcmd:
+  # Create directory if it doesn't exist
+  - mkdir -p /root/dotfiles
+  # Clone the repository
+  - git clone --recursive https://github.com/NayanJD/dotfiles.git /root/dotfiles
+  # Make setup script executable
+  # - chmod +x /root/dotfiles/setup.sh
+  # Run setup script
+  # - /root/dotfiles/setup.sh
+  - cd /root/dotfiles
+  - ./setup.sh
+
+# Set file permissions
+write_files:
+  - path: /opt/myapp/setup-complete
+    content: |
+      Setup completed at $(date)
+    permissions: '0644'

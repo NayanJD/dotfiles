@@ -119,6 +119,9 @@ source $ZSH/oh-my-zsh.sh
 # Replace ls with eza
 alias ls="eza --icons"
 
+# Replace cat with bat
+alias cat="batcat"
+
 # Setup hoook for direnv
 eval "$(direnv hook zsh)"
 
