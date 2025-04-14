@@ -32,10 +32,11 @@ fc -R # Reload the history file
 
 ## Compatibility matrix
 
-| VM | Is Supported | Automated Provisioning | Note |
+| VM | Has been Tested | Automated Provisioning | Note |
 | -------- | -------- | -------- | --------- |
-| DigitalOcean Droplet (Ubuntu 22.04 LTS)   | ✅   | ✅  |  |
-| Lima VM (Ubuntu 22.04 LTS)   |  ✅   | ✅  | [1] |
+| DigitalOcean Droplet (Ubuntu 22.04 LTS)   | ❌  | ✅  |  |
+| Lima VM (Ubuntu 22.04 LTS)   |  ❌   | ✅  | [1] |
+| Orbstack (Ubuntu 22.04 LTS)  |  ✅   | ✅  |     |
 
 1. If the boot time takes too much time (probably due to system constraints),
 provisioning might fail.
@@ -77,7 +78,25 @@ Steps to cleanup:
        ```shell
        cat /var/log/cloud-init-output.log
        ```
-       
+
+**NOTE**: I have switched to orbstack because of VPN issues and slow git ops on large monorepos
+
+### [Orbstack](https://docs.orbstack.dev/)
+
+1. Run below:
+
+```shell
+orb create ubuntu:jammy test-vm -c orbstack/cloud-init.yaml
+```
+
+2. Login to the machine
+
+```shell
+ssh root@test-vm@orb
+```
+**NOTE**: 
+1. Using kitty to ssh is not currently setting the $TERM to kitty. So, neofetch would not work on shell logins.
+
 ## Building Neovim
 
 Why are we building neovim when it's available in debian repos? Because for 22.04 the version of neovim available
