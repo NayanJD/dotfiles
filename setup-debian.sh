@@ -162,7 +162,7 @@ function setup_debian() {
   chmod +x /usr/local/bin/kubectl
 
   # Install kubectx and kubens
-  snap install kubectx --classic
+  # snap install kubectx --classic
   
   # Install 1password cli
   wget "https://downloads.1password.com/linux/debian/${arch}/stable/1password-cli-${arch}-latest.deb"
