@@ -91,7 +91,7 @@ function setup_debian() {
     echo "NvChad dir does not contain anything. The Dotfiles repo has been cloned without --recurse-submodule. Skipping copying nvim config!"
   fi
 
-  wget -q "https://go.dev/dl/go1.23.5.linux-${arch}.tar.gz" -O go.tar.gz
+  wget -q "https://go.dev/dl/go1.24.1.linux-${arch}.tar.gz" -O go.tar.gz
   tar -C /usr/local -xzf go.tar.gz
 
   # Zsh is not appending go bin path to $PATH. This is a temp fix.
