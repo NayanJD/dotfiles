@@ -35,7 +35,7 @@ fc -R # Reload the history file
 | VM | Has been Tested | Automated Provisioning | Note |
 | -------- | -------- | -------- | --------- |
 | DigitalOcean Droplet (Ubuntu 22.04 LTS)   | ❌  | ✅  |  |
-| Lima VM (Ubuntu 22.04 LTS)   |  ❌   | ✅  | [1] |
+| Lima VM (Ubuntu 22.04 LTS)   |  ✅   | ✅  | [1] |
 | Orbstack (Ubuntu 22.04 LTS)  |  ✅   | ✅  |     |
 
 1. If the boot time takes too much time (probably due to system constraints),
