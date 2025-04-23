@@ -11,6 +11,7 @@ packages:
   - iptables
   - wget
   - curl
+  - man
 
 # Run commands to clone repo and execute setup script
 runcmd:
