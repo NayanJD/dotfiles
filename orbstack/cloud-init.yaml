@@ -12,6 +12,7 @@ packages:
   - wget
   - curl
   - man
+  - dnsutils
 
 # Run commands to clone repo and execute setup script
 runcmd:
