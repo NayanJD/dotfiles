@@ -239,3 +239,4 @@ alias kdelno='kubectl delete node'
 # $TERM as screen-256color
 [ "$TERM" = "xterm-kitty" ] && neofetch --kitty /Users/nayandas/Downloads/zenitsu1.png --size 600px
 
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
