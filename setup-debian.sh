@@ -19,7 +19,9 @@ function setup_debian() {
 
   apt-get update &&
     apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv ripgrep nodejs npm unzip jq neofetch kitty &&
-    apt-get install -y python3.10-venv btop wget bat
+    apt-get install -y python3.10-venv btop wget bat &&
+    apt-get install -y taskwarrior timewarrior
+
 
   # Install eza
   sudo mkdir -p /etc/apt/keyrings
