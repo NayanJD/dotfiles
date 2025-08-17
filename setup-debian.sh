@@ -10,6 +10,9 @@ function is_env_set() {
 
 function setup_debian() {
   export HOME=/root
+  
+  # Setting timezone to UTC for the server
+  timedatectl set-timezone UTC
 
   arch=$(dpkg --print-architecture)
 
@@ -19,7 +22,9 @@ function setup_debian() {
 
   apt-get update &&
     apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv ripgrep nodejs npm unzip jq neofetch kitty &&
-    apt-get install -y python3.10-venv btop wget bat
+    apt-get install -y python3.10-venv btop wget bat clangd &&
+    apt-get install -y taskwarrior timewarrior
+
 
   # Install eza
   sudo mkdir -p /etc/apt/keyrings
