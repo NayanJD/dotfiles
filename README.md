@@ -97,13 +97,15 @@ ssh root@test-vm@orb
 **NOTE**: 
 1. Using kitty to ssh is not currently setting the $TERM to kitty. So, neofetch would not work on shell logins.
 
+## Manually built binaries
+
+We are building binaries of some of the tools that we use. It is because Debian/Ubuntu does not follow rolling release approach of Arch mostly because of security and stability. But as a developer I need some of the updated binaries of these softwares. Hence, I build them and add it to the release page of this github repository.
+
 ## Building Neovim
 
-Why are we building neovim when it's available in debian repos? Because for 22.04 the version of neovim available
-is very old (~0.6). Also, availability of arm images is also a question. Hence, we build neovim to a deb package and 
-host it in our own repo's release page. Hopefully, there is a better way to do this in future. Currently, all the plugins
-are tried and tested with v0.10.3 of neovim.
+Currently, all the plugins are tried and tested with v0.10.3 of neovim.
 
+### Building .deb
 Run below after cloning neovim:
 
 1. Install basics:
@@ -126,6 +128,45 @@ dpkg -i <nvim deb package>
 If nvim was already installed, run:
 ```shell
 dpkg -i --force-overwrite <nvim deb package>
+```
+
+## Building Taskwarrior
+
+I am currently using 3.4.1 version of taskwarrior.
+
+### Building .deb
+
+1. Install the requirements:
+```shell
+apt install -y build-essential git uuid-dev checkinstall
+```
+
+2. Install cmake 3.22. The debian version you are using might not have 3.22. Uninstall and reinstall:
+```shell
+apt remove cmake
+pip install cmake
+```
+
+3. Install rust from https://rustup.rs/.
+
+4. Ensure Python3 is installed
+
+5. Clone and build:
+
+```shell
+git clone https://github.com/GothenburgBitFactory/taskwarrior
+cd taskwarrior
+cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build
+cd build
+checkinstall
+```
+
+6. checkinstall would ask for a lot of details. Please take your time to fill those and your .deb should be generated.
+
+7. Generate sha256sum as:
+```shell
+sha256sum blablabla.deb > blablabla.deb.sha256
 ```
 
 ## ToDo
