@@ -239,3 +239,15 @@ alias kdelno='kubectl delete node'
 # $TERM as screen-256color
 [ "$TERM" = "xterm-kitty" ] && neofetch --kitty /Users/nayandas/Downloads/zenitsu1.png --size 600px
 
+# ---- Eza (better ls) -----
+
+alias ls="eza --icons=always"
+
+# ----- Zoxide (better cd) ------
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+# ----- fzf ------
+# eval "$(fzf --bash)"
+
+alias wm='workmux'

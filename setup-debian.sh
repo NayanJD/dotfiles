@@ -19,7 +19,7 @@ function setup_debian() {
 
   apt-get update &&
     apt-get install -y git tmux tmuxinator zsh zsh-syntax-highlighting direnv ripgrep nodejs npm unzip jq neofetch kitty &&
-    apt-get install -y python3.10-venv btop wget bat
+    apt-get install -y python3.10-venv btop wget bat fzf
 
   # Install eza
   sudo mkdir -p /etc/apt/keyrings
@@ -169,6 +169,12 @@ function setup_debian() {
   # Install 1password cli
   wget "https://downloads.1password.com/linux/debian/${arch}/stable/1password-cli-${arch}-latest.deb"
   dpkg -i "1password-cli-${arch}-latest.deb"
+  
+  # Install zoxide
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  
+  # Install workmux
+  curl -fsSL https://raw.githubusercontent.com/raine/workmux/main/scripts/install.sh | bash
 
   # Change default login shell for root
   chsh -s $(which zsh)
