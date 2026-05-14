@@ -122,6 +122,10 @@ alias ls="eza --icons"
 # Replace cat with bat
 alias cat="batcat"
 
+# taskwarrior aliases
+alias t="task"
+alias o="ONENOTE_DEFAULT_CONTENT='# vim: set filetype=markdown:' onenote"
+
 # Setup hoook for direnv
 eval "$(direnv hook zsh)"
 
@@ -251,3 +255,5 @@ alias cd="z"
 # eval "$(fzf --bash)"
 
 alias wm='workmux'
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
