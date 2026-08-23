@@ -257,3 +257,8 @@ alias cd="z"
 alias wm='workmux'
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# set Ctrl + e for editing commands in the configured $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
